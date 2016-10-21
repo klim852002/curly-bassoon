@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" media="screen" title="no title">
+  </head>
+
+  <h1>creation of new student</h1>
+  <body>
+    <form method="POST" action="/students">
+
+      <div class="row">
+        <div class="three columns">
+          <label for="name">Name</label>
+          <input class="u-full-width" type="text" name="user[name]" placeholder="Name" id="user-name">
+        </div>
+
+        <div class="row">
+          <div class="three columns">
+            <label for="Email">Email</label>
+            <input class="u-full-width" type="text" name="user[email]" placeholder="Email" id="user-email">
+          </div>
+        </div>
+      </div>
+      <input class="button-primary" type="submit" value="Submit">
+    </form>
+  </body>
+</html>

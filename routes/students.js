@@ -2,11 +2,33 @@ var express = require('express')
 var router = express.Router()
 
 var Student = require('../models/student')
+// var Course = require('..models/course')
 
-// create
 // findAll
+router.get('/', function (req, res) {
+  Student.find({}, function (err, students) {
+    if (err) res.send('error, pls check' + err)
+    res.render('students/index')
+    // res.render('students/index', { student_List: students })
+  })
+})
+// create new student
+router.get('/new', function (req, res) {
+  res.render('students/new')
+})
+
+router.post('/', function (req, res) {
+  Student.create(req.body.student, function (err, student) {
+    if (err) {
+      res.send('an error occured when creating new student' + err)
+    } else {
+      res.redirect('/students')
+    }
+  })
+})
 // findOne/:id
 
+module.exports = router
 // newCourse.save(function (err) {
 //   if (err) return console.log(err);
 //   console.log('course created!')

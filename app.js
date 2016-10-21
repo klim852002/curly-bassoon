@@ -2,28 +2,27 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 // require stuffs from models
-var Course = require('./models/course')
+
 
 var port = 8000
 // mongoose stuff
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/courses')
 mongoose.Promise = global.Promise
+// app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
 
-var Course = require('./models/course')
-var Student =require('./models/student')
-// not using express
-// var newCourse = new COurse ({
-//   creating the course by emulating a form
-// })
-// console.log(newCourse)
-// new.Course.save()
+var coursesRoutes = require('./routes/courses')
+var studentsRoutes = require ('./routes/students')
 
-app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', function(req, res){
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', function(req, res) {
   res.send('Good to go!')
 })
+app.use('/courses', coursesRoutes)
+app.use('/students', studentsRoutes)
 
 app.listen(port)
 console.log('Server is running at http://localhost:' + port)
